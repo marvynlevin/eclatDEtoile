@@ -1,0 +1,227 @@
+{% extends 'admin/layout_admin.html' %}
+
+
+{% block javascripts %}
+    {{ super() }}
+   <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}" ></script>
+{% endblock %}
+
+{% block javascripts_head %}
+<script src="{{ url_for('static', filename='chart.js') }}" ></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+{% endblock %}
+
+{% block title %}
+    <title>afficher les graphs</title>
+{% endblock %}
+
+{% block body %}
+<br>
+    <h1 style="text-align: center; padding-top: 20px"> Les notes</h1> <br>
+    <h2> nombre de note(s) :
+<span style="color: red;">{{ nbr_notes.nbr_notes }}</span></h2>
+    {% if nbr_notes.nbr_notes > 0 %}
+
+    <h2> moyenne des note(s) :
+<span style="color: red;">{{ "{:,.1f}".format(moy_notes.get('moy_notes', 0)) }}</span></h2><br>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>type d'article</th>
+            <th>(id)</th>
+            <th>nombre de note(s)</th>
+            <th>moyenne des note(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ligne in lignes %}
+           <tr>
+                  <td>{{ ligne.libelle }}</td>
+                  <td>{{ ligne.id_type_article }}</td>
+                   <td><span style="color: red">
+                       {#% if ligne.nbr_articles_stock is not none %#}  {{ ligne.nbr_notes }} {#% else %#}
+                       {#% endif %#}
+                   </span></td>
+                   <td><span style="color: red">
+                       {{ "{:,.1f}".format(ligne.moy_notes) }}
+                   </span></td>
+           </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+    <br>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h2 style="text-align: center; padding-top: 30px; padding-bottom: 15px">Visualisation des données sur les notes : graph.js</h2>
+
+
+{# https://jinja.palletsprojects.com/en/3.0.x/templates/#html-escaping #}
+    <div class="row">
+    <div class="col-md-6">
+        <div style="width: 100%; height: 500px; border: #0a53be 1px solid;">
+            <canvas id="Chart1" width="100%" height="100%"></canvas>
+        </div>
+        <p>Graphique 1</p>
+    <script>
+	var ctx1 = document.getElementById("Chart1").getContext("2d");
+	var Chart1 = new Chart( ctx1, {
+  		type: "bar",
+  		data: {
+  			labels: {{ labels | safe }},
+  			datasets: [
+  				{
+  				label: "Moyenne des notes par catégorie",
+  				data: {{ values2 | safe }},
+  				fill: false,
+                 backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",
+             "#faf24c"
+             , "#6a6ce7","#55f68f","#D0c309","#c45000"],
+  				borderColor: "rgb(75,192,192)",
+  				lineTension: 0.1
+  				}
+  			]
+  		},
+  		option: {
+  			responsive: false
+  		}
+	});
+    </script>
+    </div>
+
+
+<div class="col-md-6">
+        <canvas id="pie-chart" width="100%" height="100%"></canvas>
+        <p>Graphique 2</p>
+
+    <script>
+	var Chart2 = new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: {{ labels | safe }},
+      datasets: [{
+        label: "Nombre de notes par catégorie",
+         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",
+             "#faf24c"
+             , "#6a6ce7","#55f68f","#D0c309","#c45000"],
+        data: {{ values | safe }},
+          borderColor: "rgb(75,192,192)",
+          lineTension: 0.1
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Type article : nombre'
+      }
+     }
+    });
+    </script>
+</div>
+
+        {% else %}
+        pas de notes
+    {% endif %}
+
+
+        <br>
+        <h1 style="text-align: center; padding-top: 50px "> Les commentaites</h1> <br><br>
+
+    <h2> nombre de commentaire(s) :
+<span style="color: red;">{{ nbr_commentaires.nbr_commentaires }}</span></h2>
+        {% if nbr_commentaires.nbr_commentaires > 0 %}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>type d'article</th>
+            <th>(id)</th>
+            <th>nombre de commentaire(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ligne in lignes2 %}
+           <tr>
+                  <td>{{ ligne.libelle }}</td>
+                  <td>{{ ligne.id_type_article }}</td>
+                   <td><span style="color: red">
+                       {#% if ligne.nbr_articles_stock is not none %#}  {{ ligne.nbr_commentaires }} {#% else %#}
+                       {#% endif %#}
+                   </span></td>
+           </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    <br>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h2 style="text-align: center; padding-top: 30px; padding-bottom: 15px">Visualisation des données sur les commentaires : graph.js</h2>
+
+
+    <div class="row">
+    <div class="col-md-6">
+        <div style="width: 100%; height: 500px; border: #0a53be 1px solid;">
+            <canvas id="Chart2" width="100%" height="100%"></canvas>
+        </div>
+        <p>Graphique 1</p>
+    <script>
+	var ctx1 = document.getElementById("Chart2").getContext("2d");
+	var Chart1 = new Chart( ctx1, {
+  		type: "bar",
+  		data: {
+  			labels: {{ labels | safe }},
+  			datasets: [
+  				{
+  				label: "Nombre de commentaires par catégorie",
+  				data: {{ values3 | safe }},
+  				fill: false,
+                 backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",
+             "#faf24c"
+             , "#6a6ce7","#55f68f","#D0c309","#c45000"],
+  				borderColor: "rgb(75,192,192)",
+  				lineTension: 0.1
+  				}
+  			]
+  		},
+  		option: {
+  			responsive: false
+  		}
+	});
+    </script>
+    </div>
+
+
+<div class="col-md-6">
+        <canvas id="pie-chart2" width="100%" height="100%"></canvas>
+        <p>Graphique 2</p>
+
+    <script>
+	var Chart2 = new Chart(document.getElementById("pie-chart2"), {
+    type: 'pie',
+    data: {
+      labels: {{ labels | safe }},
+      datasets: [{
+        label: "Nombre de commentaires par catégorie",
+         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",
+             "#faf24c"
+             , "#6a6ce7","#55f68f","#D0c309","#c45000"],
+        data: {{ values3 | safe }},
+          borderColor: "rgb(75,192,192)",
+          lineTension: 0.1
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Type article : nombre'
+      }
+     }
+    });
+    </script>
+</div>
+            {% else %}
+            <p>pas de commentaires</p>
+    {% endif %}
+{% endblock %}
