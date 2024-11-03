@@ -11,20 +11,24 @@
 - **Objectif** : Développer **Eclat D'Étoile**, une plateforme de gestion des peintures permettant aux clients de parcourir, filtrer et acheter des produits en ligne tout en gérant efficacement les commandes et les stocks.
 
 ## Documents liés au projet
-- [-pdf](./docs/)
-- [](./docs/)
-- [-pdf](./docs/)
-- [-pdf](./docs/)
+- [Cahier des charges-pdf](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cédric_DULIEUX_Baptiste_MEYER_Timothee_cahier_des_charges.pdf)
+- [Planning Gantt-gan](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cédric_DULIEUX_Baptiste_MEYER_Timothee_planningGantt.gan) [Planning Gantt-png](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cedric_DULIEUX_Baptiste_MEYER_Timothee_planningGantt.png) [Planning Pert-png](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cédric_DULIEUX_Baptiste_MEYER_Timothee_planningPert.png) [Planning ressources-png](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cédric_DULIEUX_Baptiste_MEYER_Timothee_ressources.PNG)
+- [Plan assurance qualité-pdf](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cédric_DULIEUX_Baptiste_MEYER_Timothee_planAssuranceQualite.pdf)
+- [Plan financier détaillé-pdf](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cédric_DULIEUX_Baptiste_MEYER_Timothee_DetailedCostManagment.pdf) [Tableaux-pdf](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cédric_DULIEUX_Baptiste_MEYER_Timothee_CostManagmentDashBoardEng.pdf) [Tableaux-xlsx](./docs/S2B1G9_LEVIN_Marvyn_COLIN_Cédric_DULIEUX_Baptiste_MEYER_Timothee_CostManagmentDashboardEng.xlsx)
+- [Besoin hébergement Web](./docs/9_Besoins.pdf)
+- [Choix hébergement Web](./docs/9_Choix.pdf)
 
 ## Cahier des Charges
 
 ### 1. Présentation du Projet
-- **But** : 
-- **Moyens** : 
+- **But** : Créer une plateforme en ligne attractive et conviviale pour Eclat d'Étoile, spécialisée dans la vente de peintures, permettant d'améliorer l'expérience d'achat des clients.
+
+- **Moyens** : Collaboration avec Team Chartreuse, développement en Python et SQL, utilisation d'un hébergeur comme PythonAnywhere.
+
 - **Objectifs du système** :
-  - **Gestion de flotte** : 
-  - **Suivi des réservoirs d'hydrogène** : 
-  - **Performances et consommation** : 
+  - **Gestion des stocks** : Suivi et gestion des niveaux de stock pour assurer la disponibilité des produits.
+  - **Suivi des commentaires/notes** : Collecte et affichage des avis clients pour améliorer la satisfaction et la qualité des produits.
+  - **Performances et statistiques** : Analyse des ventes et du comportement des utilisateurs pour optimiser l’offre et les services.
 
 ### 2. Types de Fichiers
 - **Modèle Conceptuel de Données (MCD)** : Réalisé avec un outil graphique dédié [looping](https://www.looping-mcd.fr/) et disponible au format `.loo`.
@@ -37,13 +41,13 @@
 
 ### 4. Répartition du Travail
 - **Baptiste DULIEUX** :
-  - Analyse des besoins, conception du MCD, gestion des 
+  - Analyse des besoins, conception du MCD, gestion des listes d'envies et historiques
 - **Marvyn LEVIN** :
-  - Analyse des besoins, conception du MCD, gestion des 
+  - Analyse des besoins, conception du MCD, gestion des notes et avis
 - **Timothée MEYER** :
-  - Analyse des besoins, conception du MCD, gestion des 
+  - Analyse des besoins, conception du MCD, gestion des déclinaisons 
 - **Cédric COLIN** :
-  - Analyse des besoins, conception du MCD, gestion des 
+  - Analyse des besoins, conception du MCD, gestion des adresses
 
 ## Concept de Modélisation
 
